@@ -1,6 +1,5 @@
 {% set version = '1.4.1' %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-websocket
@@ -13,8 +12,7 @@ source:
   sha256: 281fa0e5d8739ef90626117c8d5ca9e30c7aeb642346d16706cbca34a46749cf
 
 build:
-  merge_build_host: True  # [win]
-  number: 2
+  number: 3
   rpaths:
     - lib/R/lib/
     - lib/
@@ -22,7 +20,9 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}              # [not win]
+    - {{ stdlib("c") }}                # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib("m2w64_c") }}          # [win]
     - {{ compiler('cxx') }}            # [not win]
     - {{ compiler('m2w64_cxx') }}      # [win]
     - {{ posix }}filesystem        # [win]
@@ -45,7 +45,6 @@ requirements:
     - openssl >=1.0.2
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - r-asioheaders
     - r-r6
     - r-cpp11
