@@ -1,0 +1,22 @@
+From 8e4c1c8232e03086ea41a6ab83bfd35b2120a3ff Mon Sep 17 00:00:00 2001
+From: Mervin Fansler <mmfansler@gmail.com>
+Date: Tue, 17 Sep 2024 21:21:51 +0200
+Subject: [PATCH] add pthread win
+
+---
+ src/Makevars.win | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/Makevars.win b/src/Makevars.win
+index 73d5d9a..4d8c4e6 100644
+--- a/src/Makevars.win
++++ b/src/Makevars.win
+@@ -2,7 +2,7 @@ OPENSSL_VERSION=1.1.1g
+ 
+ # Some settings from https://github.com/zaphoyd/websocketpp/issues/478
+ PKG_CPPFLAGS=-I./lib -I../windows/openssl-$(OPENSSL_VERSION)/include -D_WEBSOCKETPP_CPP11_THREAD_
+-PKG_LIBS= -L../windows/openssl-$(OPENSSL_VERSION)/lib${R_ARCH}${CRT} -lssl -lcrypto -lz -lws2_32 -lgdi32 -lcrypt32
++PKG_LIBS= -L../windows/openssl-$(OPENSSL_VERSION)/lib${R_ARCH}${CRT} -lssl -lcrypto -lz -lws2_32 -lgdi32 -lcrypt32 -pthread
+ 
+ #### Debugging flags ####
+ # Uncomment to enable thread assertions
