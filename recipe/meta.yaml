@@ -12,8 +12,6 @@ source:
   sha256: 9c686a513bce5b15faf51b8654349252108b59add1a02b992e35ce793d571310
   patches:
     - patches/0001-add-pthread-win.patch
-    ## see https://github.com/qcscine/utilities/issues/5
-    - patches/0002-boost-std-aligned-alloc.patch  # [osx]
 
 build:
   number: 0
