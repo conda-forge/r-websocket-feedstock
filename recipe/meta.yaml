@@ -1,4 +1,4 @@
-{% set version = '1.4.1' %}
+{% set version = '1.4.2' %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,29 +9,35 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/websocket_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/websocket/websocket_{{ version }}.tar.gz
-  sha256: 281fa0e5d8739ef90626117c8d5ca9e30c7aeb642346d16706cbca34a46749cf
+  sha256: 9c686a513bce5b15faf51b8654349252108b59add1a02b992e35ce793d571310
+  patches:
+    - patches/0001-add-pthread-win.patch
 
 build:
-  number: 3
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
-    - {{ compiler('c') }}              # [not win]
-    - {{ stdlib("c") }}                # [not win]
-    - {{ compiler('m2w64_c') }}        # [win]
-    - {{ stdlib("m2w64_c") }}          # [win]
-    - {{ compiler('cxx') }}            # [not win]
-    - {{ compiler('m2w64_cxx') }}      # [win]
+    - {{ compiler('c') }}          # [not win]
+    - {{ stdlib("c") }}            # [not win]
+    - {{ compiler('m2w64_c') }}    # [win]
+    - {{ stdlib("m2w64_c") }}      # [win]
+    - {{ compiler('cxx') }}        # [not win]
+    - {{ compiler('m2w64_cxx') }}  # [win]
     - {{ posix }}filesystem        # [win]
     - {{ posix }}sed               # [win]
     - {{ posix }}grep              # [win]
     - {{ posix }}autoconf
     - {{ posix }}automake          # [not win]
     - {{ posix }}automake-wrapper  # [win]
-    - {{ posix }}pkg-config
+    - pkg-config
     - {{ posix }}make
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
