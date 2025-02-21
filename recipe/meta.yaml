@@ -53,6 +53,7 @@ requirements:
     - r-cpp11
     - r-later >=1.2.0
     - openssl >=1.0.2
+    - zlib
   run:
     - r-base
     - r-asioheaders
