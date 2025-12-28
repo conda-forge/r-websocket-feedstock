@@ -1,4 +1,4 @@
-{% set version = '1.4.1' %}
+{% set version = "1.4.4" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,12 +9,12 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/websocket_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/websocket/websocket_{{ version }}.tar.gz
-  sha256: 281fa0e5d8739ef90626117c8d5ca9e30c7aeb642346d16706cbca34a46749cf
+  sha256: 9fcd00271e461ec9deda4aef83155f9f8c9125490123fc11121df48e11f4142e
   patches:
     - patches/0001-add-pthread-win.patch
 
 build:
-  number: 5
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -70,8 +70,7 @@ test:
 about:
   home: https://CRAN.R-project.org/package=websocket
   license: GPL-2.0-only
-  summary: 'Provides a ''WebSocket'' client interface for R. ''WebSocket'' is a protocol for
-    low-overhead real-time communication: <https://en.wikipedia.org/wiki/WebSocket>.'
+  summary: 'Provides a ''WebSocket'' client interface for R. ''WebSocket'' is a protocol for low-overhead real-time communication: <https://en.wikipedia.org/wiki/WebSocket>.'
   license_family: GPL2
   license_file:
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
